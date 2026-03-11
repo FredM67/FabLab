@@ -18,6 +18,10 @@ Utilisation :
     # Générer N plateaux anonymes :
     python3 generate_puzzle.py --nombre 6
 
+    # Découpe seule (sans gravure des cases noires) :
+    python3 generate_puzzle.py --decoupe-seule
+    python3 generate_puzzle.py --decoupe-seule "Les Lions" "Les Tigres"
+
 Chaque équipe obtient un puzzle avec une combinaison unique de tenons.
 Les fichiers SVG sont prêts à ouvrir dans Inkscape ou xTool Creative Space.
 """
@@ -394,23 +398,28 @@ def label_text(text):
             f'fill="{COLOR_ENGRAVE}">{text}</text>')
 
 
-def generate_svg(h_edges, v_edges, team_name=""):
+def generate_svg(h_edges, v_edges, team_name="", engrave=True):
     w = BOARD_MM + 2 * SVG_MARGIN
     h = BOARD_MM + 2 * SVG_MARGIN + (10 if team_name else 0)
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg"',
         f'     width="{f(w)}mm" height="{f(h)}mm"',
         f'     viewBox="0 0 {f(w)} {f(h)}">',
-        '',
-        '  <!-- Cases sombres (gravure laser) -->',
-        '  <g id="engrave">',
-        engrave_squares(),
     ]
-    lbl = label_text(team_name)
-    if lbl:
-        parts.append(lbl)
+
+    if engrave:
+        parts += [
+            '',
+            '  <!-- Cases sombres (gravure laser) -->',
+            '  <g id="engrave">',
+            engrave_squares(),
+        ]
+        lbl = label_text(team_name)
+        if lbl:
+            parts.append(lbl)
+        parts.append('  </g>')
+
     parts += [
-        '  </g>',
         '',
         '  <!-- Lignes de découpe (laser) -->',
         '  <g id="cut">',
@@ -434,7 +443,7 @@ def sanitize_filename(name):
     return "".join(c for c in safe if c.isalnum() or c == "_")
 
 
-def generate_one(seed, team_name, out_dir):
+def generate_one(seed, team_name, out_dir, engrave=True):
     """Génère un SVG pour une équipe donnée."""
     h_edges, v_edges = assign_combos(seed=seed)
     collisions = verify(h_edges, v_edges)
@@ -445,7 +454,7 @@ def generate_one(seed, team_name, out_dir):
         for item in collisions:
             print(f"    {item[0]}: h{item[1]} vs v{item[2]}")
 
-    svg = generate_svg(h_edges, v_edges, team_name=team_name)
+    svg = generate_svg(h_edges, v_edges, team_name=team_name, engrave=engrave)
     if team_name:
         filename = f"damier_{sanitize_filename(team_name)}.svg"
     else:
@@ -463,6 +472,12 @@ if __name__ == "__main__":
     # Parser les arguments
     args = sys.argv[1:]
     teams = []
+    engrave = True
+
+    # Extraire l'option --decoupe-seule
+    if "--decoupe-seule" in args:
+        engrave = False
+        args.remove("--decoupe-seule")
 
     if not args:
         # Aucun argument : 1 plateau anonyme
@@ -475,7 +490,8 @@ if __name__ == "__main__":
         # Noms d'équipes en arguments positionnels
         teams = [(name, 42 + i) for i, name in enumerate(args)]
 
-    print(f"Génération de {len(teams)} plateau(x)…")
+    mode = "découpe seule" if not engrave else "gravure + découpe"
+    print(f"Génération de {len(teams)} plateau(x) ({mode})…")
     print(f"Plateau : {BOARD_MM:.0f}×{BOARD_MM:.0f}mm, "
           f"{N_CASES}×{N_CASES} = {N_CASES**2} pièces")
     print(f"Jonctions : {N_TOTAL}, marge anti-collision : {COLLISION_MARGIN}mm\n")
@@ -483,5 +499,5 @@ if __name__ == "__main__":
     for team_name, seed in teams:
         label = team_name if team_name else f"seed={seed}"
         print(f"[{label}]")
-        generate_one(seed, team_name, out_dir)
+        generate_one(seed, team_name, out_dir, engrave=engrave)
         print()
