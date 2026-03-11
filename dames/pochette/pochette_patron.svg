@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="530.0mm" height="530.0mm"
+     viewBox="0 0 530.0 530.0">
+
+  <g id="corps">
+    <rect x="15.0" y="23.0" width="240.0" height="330.0" fill="none" stroke="#FF0000" stroke-width="0.3"/>
+    <rect x="25.0" y="33.0" width="220.0" height="310.0" fill="none" stroke="#0000FF" stroke-width="0.2" stroke-dasharray="4,3"/>
+    <line x1="25.0" y1="313.0" x2="245.0" y2="313.0" stroke="#00AA00" stroke-width="0.2" stroke-dasharray="4,3"/>
+    <line x1="83.5" y1="328.0" x2="98.5" y2="328.0" stroke="#FF0000" stroke-width="0.3"/>
+    <line x1="171.5" y1="328.0" x2="186.5" y2="328.0" stroke="#FF0000" stroke-width="0.3"/>
+    <text x="135.0" y="20.0" text-anchor="middle" font-size="4" fill="#0000FF">Corps du sac (×2 — pièce 1)</text>
+    <rect x="275.0" y="23.0" width="240.0" height="330.0" fill="none" stroke="#FF0000" stroke-width="0.3"/>
+    <rect x="285.0" y="33.0" width="220.0" height="310.0" fill="none" stroke="#0000FF" stroke-width="0.2" stroke-dasharray="4,3"/>
+    <line x1="285.0" y1="313.0" x2="505.0" y2="313.0" stroke="#00AA00" stroke-width="0.2" stroke-dasharray="4,3"/>
+    <line x1="343.5" y1="328.0" x2="358.5" y2="328.0" stroke="#FF0000" stroke-width="0.3"/>
+    <line x1="431.5" y1="328.0" x2="446.5" y2="328.0" stroke="#FF0000" stroke-width="0.3"/>
+    <text x="395.0" y="20.0" text-anchor="middle" font-size="4" fill="#0000FF">Corps du sac (×2 — pièce 2)</text>
+  </g>
+
+  <g id="poche">
+    <rect x="15.0" y="381.0" width="240.0" height="130.0" fill="none" stroke="#FF0000" stroke-width="0.3"/>
+    <line x1="15.0" y1="401.0" x2="255.0" y2="401.0" stroke="#00AA00" stroke-width="0.2" stroke-dasharray="4,3"/>
+    <text x="135.0" y="378.0" text-anchor="middle" font-size="4" fill="#0000FF">Poche intérieure (×1)</text>
+  </g>
+
+  <g id="applique">
+    <rect x="275.0" y="391.0" width="60.0" height="60.0" rx="3" ry="3" fill="none" stroke="#FF0000" stroke-width="0.3"/>
+    <rect x="290.0" y="391.0" width="15.0" height="15.0" fill="#000000" stroke="none"/>
+    <rect x="320.0" y="391.0" width="15.0" height="15.0" fill="#000000" stroke="none"/>
+    <rect x="275.0" y="406.0" width="15.0" height="15.0" fill="#000000" stroke="none"/>
+    <rect x="305.0" y="406.0" width="15.0" height="15.0" fill="#000000" stroke="none"/>
+    <rect x="290.0" y="421.0" width="15.0" height="15.0" fill="#000000" stroke="none"/>
+    <rect x="320.0" y="421.0" width="15.0" height="15.0" fill="#000000" stroke="none"/>
+    <rect x="275.0" y="436.0" width="15.0" height="15.0" fill="#000000" stroke="none"/>
+    <rect x="305.0" y="436.0" width="15.0" height="15.0" fill="#000000" stroke="none"/>
+    <text x="305.0" y="388.0" text-anchor="middle" font-size="4" fill="#0000FF">Appliqué feutrine (×1)</text>
+  </g>
+
+  <g id="legende" font-size="3.5">
+    <text x="15.0" y="520.0" fill="#FF0000">Rouge = découpe</text>
+    <text x="95.0" y="520.0" fill="#0000FF">Bleu = repère couture</text>
+    <text x="185.0" y="520.0" fill="#00AA00">Vert = pliage</text>
+    <text x="255.0" y="520.0" fill="#000000">Noir = gravure</text>
+  </g>
+
+</svg>
